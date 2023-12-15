@@ -1,3 +1,5 @@
+import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.matching.Regex
 
@@ -9,68 +11,69 @@ object Main {
       try source.getLines().toList
       finally source.close()
 
-    val numberPattern: Regex = "\\d+".r
     val specialPattern: Regex = "\\*".r
-    var index, start, end, num = 0
-    var listOfFlags: List[Map[Int, (Int, Int)]] = List.empty
+    var index = 0
 
-    def is_gear(num: Int, index: Int, start: Int, end: Int): Int = {
-//      def checkGear(idx: Int): Int = {
-//        have_gear_nearby(lines.apply(idx).substring(start, end))
-//        if (
-//          (lines.apply(idx).substring(start, start + 1).equals("*") ||
-//            lines
-//              .apply(idx + 1)
-//              .substring(start, start + 1)
-//              .equals("*")) && lines.length != end
-//        ) {
-//          val find_pre_gear = s"(\\d+)\\s*\\*$num".r
-//          find_pre_gear.findFirstMatchIn(lines.apply(idx)) match {
-//            case Some(s) =>
-//              s.matched.replace(s"*$num", "").toInt * num
-//            case _ =>
-//              println(s"${lines.apply(idx)} $num")
-//              println(
-//                s"${lines.apply(idx).replace(lines.apply(idx).substring(0, start + 1), lines.apply(idx + 1).substring(0, start) + "*")}"
-//              )
-//              println(s"${lines.apply(idx + 1)} after")
-//              println()
-//              0
-//          }
-//
-//        } else 0
-//      }
-      index match {
-        case 0 =>
-          val current = lines.apply(index).substring(start, end)
-          val above = lines.apply(index + 1).substring(start, end)
-          specialPattern.findFirstMatchIn(current) match {
-            case Some(flag) => println(flag)
-            case _          => specialPattern.findFirstMatchIn(above) match
-              case Some(flag) =>
-                listOfFlags = listOfFlags :+  Map(index -> (flag.start + start, num))
-              case _ =>
+    def find_number(index: Int, gear: String, switch: String): String = {
+      var number = ""
+      var _loop = index
+      switch match
+        case "left" =>
+          while (_loop >= 0 && gear.apply(_loop).isDigit) {
+            number = gear.apply(_loop) + number
+            _loop = _loop - 1
           }
-          println(listOfFlags)
-          0
-        case lastIndex if lastIndex == lines.length - 1 => 0
-        case _                                          => 0
+        case "right" =>
+          while (_loop <= lines.length - 1 && gear.apply(_loop).isDigit) {
+            number = number + gear.apply(_loop)
+            _loop += 1
+          }
+      number
+    }
+
+    def check_left_right(index_check: Int, gear: String, list: ListBuffer[Int]): ListBuffer[Int] = {
+      if gear.apply(index_check - 1).isDigit then {
+        list.append(find_number(index_check - 1, gear, "left").toInt)
       }
+      if gear.apply(index_check + 1).isDigit then {
+        list.append(find_number(index_check + 1, gear, "right").toInt)
+      }
+      list
     }
 
     var result = 0
     for (gear <- lines) {
-      numberPattern.findAllMatchIn(gear).foreach { numbersMatch =>
+      specialPattern.findAllMatchIn(gear).foreach { numbersMatch =>
         {
-          val index_start = numbersMatch.start
-          val index_end = numbersMatch.end
-          start = if (index_start - 1 >= 0) index_start - 1 else index_start
-          end = if (index_end + 1 < gear.length) index_end + 1 else index_end
-          num = numbersMatch.matched.toInt
-          result = result + is_gear(num, index, start, end)
+          val index_gear = numbersMatch.start
+          var list_gear_number: ListBuffer[Int] = ListBuffer()
+          index match {
+            case _ if index_gear != 0 && index_gear != lines.length - 2 =>
+              list_gear_number = check_left_right(index_gear, gear, list_gear_number)
+              if lines.apply(index + 1).apply(index_gear).isDigit then {
+                val number_left = find_number(index_gear, lines.apply(index + 1), "left")
+                val number_right = find_number(index_gear + 1, lines.apply(index + 1), "right")
+                list_gear_number.append((number_left + number_right).toInt)
+              }
+              else {
+                list_gear_number = check_left_right(index_gear, lines.apply(index + 1), list_gear_number)
+              }
+              if lines.apply(index - 1).apply(index_gear).isDigit then {
+                val number_left = find_number(index_gear, lines.apply(index - 1), "left")
+                val number_right = find_number(index_gear + 1, lines.apply(index - 1), "right")
+                list_gear_number.append((number_left + number_right).toInt)
+              }
+              else {
+                list_gear_number = check_left_right(index_gear, lines.apply(index - 1), list_gear_number)
+              }
+          }
+          if (list_gear_number.length == 2) {
+            println(list_gear_number)
+            result = result + list_gear_number.head * list_gear_number.apply(1)
+          }
         }
       }
-      index += 1
+      index = index + 1
     }
     println(result)
   }
