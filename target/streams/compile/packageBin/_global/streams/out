@@ -1,13 +1,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mPackaging /home/sinhns/workspace/freelancer/target/scala-3.1.2/freelancer_3-0.1.0-SNAPSHOT.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	test.txt[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/test.txt[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Main.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/Main.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/Main$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	data_day3.txt[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/data_day3.txt[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards/test.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards/test.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards/Main.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards/Main.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards/puzzle_day4.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards/puzzle_day4.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scratchcards/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/scratchcards/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	main.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/main.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	gear_ratios[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/gear_ratios[0m
+[0m[[0m[0mdebug[0m] [0m[0m	gear_ratios/test.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/gear_ratios/test.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	gear_ratios/data_day3.txt[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/sinhns/workspace/freelancer/target/scala-3.1.2/classes/gear_ratios/data_day3.txt[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
