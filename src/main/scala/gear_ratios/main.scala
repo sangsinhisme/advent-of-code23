@@ -3,9 +3,9 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.matching.Regex
 
-object Main {
+object main {
 
-  def main(args: Array[String]): Unit = {
+  def main_gear_ratios(args: Array[String]): Unit = {
     val source = Source.fromFile("src/main/scala/data_day3.txt")
     val lines =
       try source.getLines().toList
