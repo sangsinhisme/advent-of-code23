@@ -3,7 +3,7 @@ import scala.io.Source
 
 object Main {
 
-  def main(args: Array[String]): Unit = {
+  def _main(args: Array[String]): Unit = {
     val source = Source.fromFile("src/main/scala/scratchcards/puzzle_day4.txt")
     val lines =
       try source.getLines().toList
