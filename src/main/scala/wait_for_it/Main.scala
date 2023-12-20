@@ -5,7 +5,7 @@ import scala.util.matching.Regex
 
 object Main {
 
-  def main(args: Array[String]): Unit = {
+  def _main(args: Array[String]): Unit = {
     val source = Source.fromFile("src/main/scala/wait_for_it/puzzle_day5.txt")
     val lines =
       try source.getLines().toList
