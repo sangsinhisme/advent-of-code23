@@ -21,7 +21,7 @@ object Main {
   }
 
 
-  def main(_args: Array[String]): Unit = {
+  def _main(args: Array[String]): Unit = {
     val source = Source.fromFile("src/main/scala/mirage_maintenance/puzzle_day9.txt")
     val lines =
       try source.getLines().toList
