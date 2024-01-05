@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import scala.io.Source
 import scala.util.matching.Regex
 
-object Main {
+object part1 {
 
   def update_vector(current_move: Char, vector: (Int, Int)):  (Int, Int) = {
     current_move match
