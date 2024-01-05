@@ -4,5 +4,7 @@ ThisBuild / scalaVersion := "3.1.2"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "freelancer"
+    name := "freelancer",
+    libraryDependencies += "com.lihaoyi" %% "requests" % "0.8.0"
+
   )
