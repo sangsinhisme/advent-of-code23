@@ -1,2 +1,16 @@
+
 target/
 target/streams/compile/_global/_global/compileOutputs/previous
+
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+/codeStyles
+*.xml
+/.idea
