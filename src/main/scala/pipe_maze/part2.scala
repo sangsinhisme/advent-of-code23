@@ -57,7 +57,6 @@ object part2 {
     var visited: Array[(Int, Int)] = Array.empty
     val offsets = Seq((-1, 0), (1, 0), (0, -1), (0, 1))
     while (queue.nonEmpty) {
-      println(queue.mkString("Array(", ", ", ")"))
       val current_move = queue.last
       visited = visited :+ current_move
       queue = queue.dropRight(1)

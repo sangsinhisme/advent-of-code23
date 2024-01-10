@@ -1,12 +1,13 @@
 package cosmic_expansion
 
+import cosmic_expansion.Space
+import utils.CommonUtils
+
 import scala.annotation.tailrec
 import scala.io.Source
 import scala.util.matching.Regex
-import utils.CommonUtils
-import cosmic_expansion.Space
 
-object part1 {
+object part2 {
 
   def main(args: Array[String]): Unit = {
 
@@ -21,7 +22,8 @@ object part1 {
       )
     }.sum
 
-    println(result)
-    CommonUtils.submit_answer(11, 2023, answer = result.toString, level = 1)
+    println(s"My answer: $result")
+//    val submit = CommonUtils.submit_answer(11, 2023, answer = result.toString, level = 2)
+//    println(submit)
   }
 }
