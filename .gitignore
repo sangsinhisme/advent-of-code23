@@ -11,6 +11,10 @@ target/streams/compile/_global/_global/compileOutputs/previous
 /dataSources/
 /dataSources.local.xml
 
+project/target
+
 /codeStyles
 *.xml
 /.idea
+
+src/main/resources/application.conf

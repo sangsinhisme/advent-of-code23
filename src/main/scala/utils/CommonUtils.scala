@@ -1,8 +1,10 @@
 package utils
 
-import java.io._
+import java.io.*
 import scala.io.Source
 import scala.reflect.ClassTag
+import org.jsoup.Jsoup
+import com.typesafe.config.{Config, ConfigFactory}
 
 /**
  * Please put your description here!
@@ -10,10 +12,13 @@ import scala.reflect.ClassTag
  * @author sinhns2
  * @since 2024/1/5
  */
+
 object CommonUtils {
-  def fetchInput(day: Int, year: Int, sessionCookie: String = "53616c7465645f5f5f53d22c3530bf936d096bb2016e44aa764d138320407dfe5fe9551226ec7567c154807e8274581695f2e647d162371eb3e86466e4a91f41"): Unit = {
+  def fetchInput(day: Int, year: Int): Unit = {
     val url = s"https://adventofcode.com/$year/day/$day/input"
-    val headers = Map("Cookie" -> s"session=$sessionCookie")
+    val session = ConfigFactory.load().getString("session")
+
+    val headers = Map("Cookie" -> s"session=$session")
 
     val response = requests.get(url, headers = headers)
 
@@ -36,7 +41,7 @@ object CommonUtils {
     }
   }
 
-  def convert2arr[R: ClassTag](day: Int, split_by: Char = ' '): Array[Array[R]] = {
+  def convert2arr[R: ClassTag](day: Int): Array[Array[R]] = {
     val source = Source.fromFile(s"src/main/scala/data/$day.txt")
     val lines = try source.getLines().toList finally source.close()
 
@@ -54,5 +59,47 @@ object CommonUtils {
       result = result :+ convertedArray
     }
     result
+  }
+
+  def convert2arr[R: ClassTag](file: String): Array[Array[R]] = {
+    val source = Source.fromFile(s"$file")
+    val lines = try source.getLines().toList finally source.close()
+
+    var result = Array[Array[R]]()
+    for (line <- lines) {
+      val convertedArray = line.toArray.map { str =>
+        val convertedValue: R = implicitly[ClassTag[R]] match {
+          case t if t.runtimeClass == classOf[Int]   => str.toInt.asInstanceOf[R]
+          case t if t.runtimeClass == classOf[Char]  => str.asInstanceOf[R]
+          case t if t.runtimeClass == classOf[Long]  => str.toLong.asInstanceOf[R]
+          case _                                     => throw new IllegalArgumentException("Unsupported type")
+        }
+        convertedValue
+      }
+      result = result :+ convertedArray
+    }
+    result
+  }
+
+  def extractArticle(html: String): String = {
+    val doc = Jsoup.parse(html)
+    val articleContent = doc.select("article").text()
+    articleContent
+  }
+
+  def submit_answer(day: Int, year: Int, answer: String, level: Int): String = {
+    val url = s"https://adventofcode.com/$year/day/$day/answer"
+    val headers = Seq(
+      "Cookie" -> s"session=${sys.env("SESSION")}",
+      "Content-Type" -> "application/x-www-form-urlencoded"
+    )
+
+    val postData = requests.post(
+      url = url,
+      headers = headers,
+      data = s"level=$level&answer=$answer"
+    )
+    val articleContent = extractArticle(postData.data.toString)
+    articleContent
   }
 }
