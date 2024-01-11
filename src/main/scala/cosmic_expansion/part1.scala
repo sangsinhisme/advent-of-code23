@@ -12,9 +12,10 @@ object part1 {
 
     // Fetch input day 11
     CommonUtils.fetchInput(11,2023)
-    val source = CommonUtils.convert2arr[Char](11)
+    val source = CommonUtils.convert2arr[Char]("src/test/scala/cosmic_expansion/01.txt")
     val expand = Space().space_expands(source)
     val galaxies = Space().find_galaxies(expand)
+
     val result = galaxies.combinations(2).flatMap { case Array(galaxy1, galaxy2) =>
       Seq(
         Space().steps(galaxy1, galaxy2)
