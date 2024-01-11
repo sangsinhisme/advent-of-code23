@@ -24,13 +24,13 @@ object CommonUtils {
 
     if (response.statusCode == 200) {
 
-      if (!File(s"src/main/scala/data/$day.txt").exists){
+      if (!File(s"src/main/resources/data/$day.txt").exists){
         val content = response.text()
-        val file = new File(s"src/main/scala/data/$day.txt")
+        val file = new File(s"src/main/resources/data/$day.txt")
         val writer = new PrintWriter(file)
         writer.write(content)
         writer.close()
-        println(s"Fetch input to /src/main/scala/data/$day.txt successful")
+        println(s"Fetch input to /src/main/resources/data/$day.txt successful")
       }
       else {
         println("Input already fetched")
@@ -42,7 +42,7 @@ object CommonUtils {
   }
 
   def convert2arr[R: ClassTag](day: Int): Array[Array[R]] = {
-    val source = Source.fromFile(s"src/main/scala/data/$day.txt")
+    val source = Source.fromFile(s"src/main/resources/data/$day.txt")
     val lines = try source.getLines().toList finally source.close()
 
     var result = Array[Array[R]]()
@@ -89,8 +89,10 @@ object CommonUtils {
 
   def submit_answer(day: Int, year: Int, answer: String, level: Int): String = {
     val url = s"https://adventofcode.com/$year/day/$day/answer"
+    val session = ConfigFactory.load().getString("session")
+
     val headers = Seq(
-      "Cookie" -> s"session=${sys.env("SESSION")}",
+      "Cookie" -> s"session=$session",
       "Content-Type" -> "application/x-www-form-urlencoded"
     )
 

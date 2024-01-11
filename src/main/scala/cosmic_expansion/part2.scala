@@ -14,16 +14,18 @@ object part2 {
     // Fetch input day 11
     CommonUtils.fetchInput(11,2023)
     val source = CommonUtils.convert2arr[Char](11)
-    val expand = Space().space_expands(source)
+    val expand = Space().space_expands_multiple(source)
     val galaxies = Space().find_galaxies(expand)
+
     val result = galaxies.combinations(2).flatMap { case Array(galaxy1, galaxy2) =>
       Seq(
-        Space().steps(galaxy1, galaxy2)
+        Space().steps(galaxy1, galaxy2, expand, 1000000)
       )
     }.sum
 
-    println(s"My answer: $result")
-//    val submit = CommonUtils.submit_answer(11, 2023, answer = result.toString, level = 2)
-//    println(submit)
+    println(s"My result: $result")
+
+    val submit = CommonUtils.submit_answer(11, 2023, answer = result.toString, level = 2)
+    println(submit)
   }
 }
