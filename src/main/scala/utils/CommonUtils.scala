@@ -41,6 +41,12 @@ object CommonUtils {
     }
   }
 
+  def convert2string(day: Int): Array[String] = {
+    val source = Source.fromFile(s"src/main/resources/data/$day.txt")
+    val lines = try source.getLines().toList finally  source.close()
+    lines.toArray
+  }
+
   def convert2arr[R: ClassTag](day: Int): Array[Array[R]] = {
     val source = Source.fromFile(s"src/main/resources/data/$day.txt")
     val lines = try source.getLines().toList finally source.close()
