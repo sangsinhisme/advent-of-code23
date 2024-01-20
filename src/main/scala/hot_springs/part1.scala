@@ -9,7 +9,7 @@ object part1 {
 
   def main(args: Array[String]): Unit = {
 
-    // Fetch input day 11
+    // Fetch input day 12
     CommonUtils.fetchInput(12,2023)
     val source = CommonUtils.convert2string(12)
     val (eng, cond) = source.map {

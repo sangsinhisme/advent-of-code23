@@ -1,6 +1,6 @@
 package utils
 
-import java.io.*
+import java.io.{File, PrintWriter}
 import scala.io.Source
 import scala.reflect.ClassTag
 import org.jsoup.Jsoup
@@ -99,7 +99,7 @@ object CommonUtils {
     articleContent
   }
 
-  def submit_answer(day: Int, year: Int, answer: String, level: Int): String = {
+  def submit_answer(day: Int, year: Int, answer: String, level: Int): Unit = {
     val url = s"https://adventofcode.com/$year/day/$day/answer"
     val session = ConfigFactory.load().getString("session")
 
@@ -114,6 +114,9 @@ object CommonUtils {
       data = s"level=$level&answer=$answer"
     )
     val articleContent = extractArticle(postData.data.toString)
-    articleContent
+    if articleContent.contains("That's not the right answer") then
+      println(Console.RED + articleContent)
+    else
+      println(Console.GREEN + articleContent)
   }
 }
