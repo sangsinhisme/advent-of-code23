@@ -24,7 +24,7 @@ class SpringTrue {
               if sizeBlock.contains('.')
                 || rest.headOption.contains('#')
               then 0L
-              else arrangements('.' +: rest.tail, sizes.tail)
+              else arrangements(rest.tail, sizes.tail)
             case '?' =>
               arrangements('.' +: line.tail, sizes) +
                 arrangements('#' +: line.tail, sizes)

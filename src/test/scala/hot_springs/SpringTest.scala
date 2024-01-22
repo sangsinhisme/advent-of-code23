@@ -35,13 +35,19 @@ class SpringTest extends munit.FunSuite:
 
   test ("f2 update ?") {
     CommonUtils.fetchInput(12, 2023)
-    val source = CommonUtils.convert2string(12)
+    val source = CommonUtils.convert2string("src/test/scala/hot_springs/01.txt")
     var ans: Long = 0
     for (line <- source){
       ans += SpringTrue().sumOfUnfoldedSpringConfigurations(line)
     }
     println(ans)
 
+  }
+
+  test ("function ?") {
+    val test = "###"
+    val ans = SpringTrue().repeat(test, 5).mkString("?")
+    println(ans)
   }
 
 
