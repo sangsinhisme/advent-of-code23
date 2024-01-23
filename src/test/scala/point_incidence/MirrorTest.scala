@@ -11,7 +11,7 @@ class MirrorTest extends munit.FunSuite:
   test ("is same pattern") {
     val source =
       CommonUtils.convert2string("src/test/scala/point_incidence/01.txt")
-    val result: Int = Mirror().calling_sum(source, Array.empty)
-    println(result)
-    assert(result == 405)
+    val test =
+        CommonUtils.convert2string("src/test/scala/point_incidence/02.txt")
+    assert(Mirror().is_reflection(source, test))
   }

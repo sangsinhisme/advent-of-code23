@@ -1,28 +1,49 @@
 package point_incidence
 
+import jdk.internal.util.xml.impl.Input
+
 import scala.annotation.tailrec
 
 class Mirror {
+
+  def is_reflection(
+      input_half: Array[String],
+      output_half: Array[String]
+  ): Boolean = {
+    if (
+      input_half.length != output_half.length
+    ) {
+      false
+    } else {
+      input_half.indices.forall { i =>
+        input_half(i) == output_half(output_half.length - 1 - i)
+      }
+    }
+  }
+
+  def mirror_horizon(input: Array[String]): Int = {
+    val length = input.length
+    val mid = length / 2
+    var mirror = 0
+    for (i <- 1 until input.length) {
+      if (i <= mid) {
+        if is_reflection(input.take(i), input.slice(i, i + i)) then {
+          mirror = i
+        }
+      } else {
+        if is_reflection(input.slice(i - input.drop(i).length, i), input.drop(i)) then {
+          mirror = i
+        }
+      }
+    }
+    mirror
+  }
+
   def sumOfMirrorIndex(input: Array[String]): Int = {
-    @tailrec
-    def have_reflection(head: String, tail: Array[String]): Boolean = {
-      if tail.isEmpty then false
-      else if head.equals(tail.head) then true
-      else have_reflection(head, tail.tail)
-    }
-    @tailrec
-    def find_mirror(head: String, tail: Array[String], idx: Int): Int = {
-      if tail.isEmpty then idx
-      else if have_reflection(head, tail) then find_mirror(tail.head, tail.tail, idx + 1)
-      else if idx > 0 then idx
-      else find_mirror(tail.head, tail, idx)
-    }
-    val result = find_mirror(input.head, input.tail, 0)
-    if result != 0 then result * 100
-    else {
-      val transpose = input.map(_.toList).toList.transpose.map(_.mkString).toArray
-      find_mirror(transpose.head, transpose.tail, 0)
-    }
+    val horizon = mirror_horizon(input)
+    val result = if horizon != 0 then horizon * 100
+    else mirror_horizon(input.map(_.toList).toList.transpose.map(_.mkString).toArray)
+    result
   }
 
   def calling_sum(
