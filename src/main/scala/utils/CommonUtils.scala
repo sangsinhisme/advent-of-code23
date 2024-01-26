@@ -47,10 +47,22 @@ object CommonUtils {
     lines.toArray
   }
 
+  def convert2list(day: Int): List[String] = {
+    val source = Source.fromFile(s"src/main/resources/data/$day.txt")
+    val lines = try source.getLines().toList finally  source.close()
+    lines
+  }
+
   def convert2string(file: String): Array[String] = {
     val source = Source.fromFile(s"$file")
     val lines = try source.getLines().toList finally  source.close()
     lines.toArray
+  }
+
+  def convert2list(file: String): List[String] = {
+    val source = Source.fromFile(s"$file")
+    val lines = try source.getLines().toList finally  source.close()
+    lines
   }
 
   def convert2arr[R: ClassTag](day: Int): Array[Array[R]] = {

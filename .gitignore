@@ -21,3 +21,5 @@ src/main/resources/application.conf
 
 /src/main/resources
 /src/test/*/*.txt
+
+/project/target/
