@@ -24,3 +24,5 @@ src/main/resources/application.conf
 /src/test/*/*.txt
 
 /project/target/
+
+.idea
