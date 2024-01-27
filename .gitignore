@@ -20,7 +20,6 @@ project/target
 src/main/resources/application.conf
 
 /src/main/resources
-<<<<<<< HEAD
 /src/test/*/*.txt
 
 /project/target/
