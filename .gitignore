@@ -25,3 +25,4 @@ src/main/resources/application.conf
 /project/target/
 
 .idea
+.bsp
