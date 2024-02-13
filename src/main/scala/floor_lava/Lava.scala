@@ -13,7 +13,7 @@ class Lava {
     })
   }
 
-  def heat_mirror(map: List[List[Char]]): Int = {
+  def heat_mirror(map: List[List[Char]], start_point: (Int, Int), vector_init: (Int, Int)): Int = {
     val x_max = map.head.length
     val y_max = map.length
     var visited: List[(Int, Int)] = List.empty
@@ -54,8 +54,34 @@ class Lava {
         }
       }
     }
-    reflect((0, 0), (1, 0))
+    reflect(start_point, vector_init)
 
     visited.length
+  }
+  
+  def find_max_reflected(source: List[List[Char]]): Int = {
+    var max_result = 0
+    for {
+      i <- source.head.indices
+      j <- source.indices
+    } yield {
+      if (i == 0) {
+        val result = Lava().heat_mirror(source, (i, j), (1, 0))
+        if result > max_result then max_result = result
+      }
+      if (j == 0) {
+        val result = Lava().heat_mirror(source, (i, j), (0, 1))
+        if result > max_result then max_result = result
+      }
+      if (i == source.head.length - 1) {
+        val result = Lava().heat_mirror(source, (i, j), (-1, 0))
+        if result > max_result then max_result = result
+      }
+      if (j == source.length - 1) {
+        val result = Lava().heat_mirror(source, (i, j), (0, -1))
+        if result > max_result then max_result = result
+      }
+    }
+    max_result
   }
 }

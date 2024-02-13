@@ -3,15 +3,15 @@ package floor_lava
 import utils.CommonUtils
 
 
-object part1 {
+object part2 {
 
   def main(args: Array[String]): Unit = {
 
     // Fetch input day 16
     CommonUtils.fetchInput(16,2023)
     val source = CommonUtils.convert2list(16).map(x => x.toList)
-    val result = Lava().heat_mirror(source, (0, 0), (1, 0))
+    val result = Lava().find_max_reflected(source)
     println(result)
-    CommonUtils.submit_answer(16, 2023, answer = result.toString, level = 1)
+    CommonUtils.submit_answer(16, 2023, answer = result.toString, level = 2)
   }
 }
